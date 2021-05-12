@@ -4,10 +4,13 @@
 import Action_Component from '../Actions/Action_Component.js'
 import Action_Route from '../Actions/Action_Route.js'
 
+/** Settings */
+import Setting_App from '../Settings/Setting_App.js'
+import Setting_Routes from '../Settings/Setting_Routes.js'
+
 export default function Component_SideBar(param) {
     const {
         parent,
-        routes,
         path
     } = param;
 
@@ -100,8 +103,8 @@ export default function Component_SideBar(param) {
     });
 
     function buildNav() {
-        return routes
-            .filter(route => route.path !== 'Settings')
+        return Setting_Routes
+            .filter(route => route.path !== 'Settings' && !route.hide)
             .map(route => {
                 const {
                     path,

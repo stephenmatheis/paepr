@@ -154,7 +154,6 @@ window.onload = async () => {
     // Add SideBar Component;
     const sideBar = Component_SideBar({
         parent: appContainer,
-        routes: routes.filter(route => route.hide !== true),
         path
     });
 
