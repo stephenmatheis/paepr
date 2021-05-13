@@ -19,7 +19,7 @@ for (let i = 1; i <= count; i++) {
         Department: 'J5',
         Purpose: `Test - ${i}`,
         Frequency: frequencies[randomIntFromInterval(0, frequencies.length - 1)],
-        Status: 'Submitted',
+        Status: Data_Statuses[randomIntFromInterval(0, Data_Statuses.length - 1)].Status,
         SuspenseDate: randomDate(new Date(2021, 4, 1), new Date()), // random date between first of may and today
         SubmittedDate: randomDate(new Date(2021, 5, 1), new Date(2021, 5, 30)), // random date between first and last day of june
     });
