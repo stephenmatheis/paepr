@@ -3,5 +3,8 @@
 export default {
     FirstName: 'First',
     LastName: 'Last',
-    Account: 'first.last'
+    Account: 'first.last',
+    Category: 'CIV',
+    Section: 'J5',
+    Role: 'Analyst'
 };

@@ -33,8 +33,7 @@ export default async function View_AccountInfo(param) {
         Account,
         Role,
         Section,
-        Category,
-        Rank
+        Category
     } = App.user;
 
     /** First Name */
@@ -91,6 +90,17 @@ export default async function View_AccountInfo(param) {
     });
 
     sectionField.add();
+
+    /** Section */
+    const roleField = Component_SingleLineTextField({
+        label: 'Role',
+        value: Role,
+        readOnly: true,
+        fieldMargin: '0px',
+        parent: accountInfoCard
+    });
+
+    roleField.add();
 
     // /** Get user's available groups */
     // const allowedSwitchGroupsItems = await Action_Get({

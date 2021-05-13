@@ -156,11 +156,17 @@ export default async function View_Dashboard() {
             },
             {
                 data: 'SuspenseDate',
-                type: 'string'
+                type: 'date',
+                render(data, type, row) {
+                    return data ? new Date(data).toLocaleDateString('default', {dateStyle: 'short'}) : ''
+                }
             },
             {
                 data: 'SubmittedDate',
-                type: 'string'
+                type: 'date',
+                render(data, type, row) {
+                    return data ? new Date(data).toLocaleDateString('default', {dateStyle: 'short'}) : ''
+                }
             },
             {
                 data: 'Id',

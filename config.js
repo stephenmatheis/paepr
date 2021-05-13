@@ -13,7 +13,7 @@ export default {
     primaryColor: 'mediumslateblue',
     primaryColorRGB: '123, 104, 238',
     secondaryColor: 'ghostwhite',
-    defaultRoute: 'Dashboard',
+    defaultRoute: 'MyProjects',
     webApp: 'https://rhcc.amedd.army.mil',
     /** Runs after window.App is created in window.onload and before the selected View */
     onLoad() { 
@@ -23,7 +23,7 @@ export default {
     userFields: 'Id,FullName,LastName,FirstName,Category,Rank,Section,Account,ActiveShift,ShiftStart,ShiftEnd,Role',
     routes: [
         {
-            path: 'Dashboard',
+            path: 'MyProjects',
             icon: 'list',
             go() {
                 View_Dashboard();
