@@ -246,6 +246,8 @@
         // Launch in chrome (not working after migration to MHS domain)
         function openChrome() {
             var shell = new ActiveXObject('WScript.Shell');
+
+            console.log(shell);
                 
             shell.run('Chrome ' + 'https://google.com');
         };
