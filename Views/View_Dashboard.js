@@ -74,43 +74,47 @@ export default async function View_Dashboard() {
         return Math.floor((num / den.length) * 100);
     }
 
-    let bannerData = [
-        {
-            label: 'Requests',
-            value: Data_Requests.length
-        },
-        {
-            label: 'One Time',
-            value: Data_Requests.filter(item => item.Frequency === 'One Time').length
-        },
-        {
-            label: 'Recurring',
-            value: Data_Requests.filter(item => item.Frequency === 'Recurring').length
-        }
-    ];
-
-    Data_Statuses.forEach(item => {
-        const {
-            Status,
-            Color
-        } = item;
-
-        const count = Data_Requests.filter(item => item.Status === Status).length;
-
-        bannerData.push({
-            label: Status,
-            value: count,
-            description: `${toPercent(count, Data_Requests.length)}%`,
-            color: Color ? 'white' : null,
-            background: Color
-        }); 
-    });
-
-    bannerData.unshift();
+    function buildBannerData(data) {
+        let bannerData = [
+            {
+                label: 'Requests',
+                value: data.length
+            },
+            {
+                label: 'One Time',
+                value: data.filter(item => item.Frequency === 'One Time').length
+            },
+            {
+                label: 'Recurring',
+                value: data.filter(item => item.Frequency === 'Recurring').length
+            }
+        ];
+    
+        Data_Statuses.forEach(item => {
+            const {
+                Status,
+                Color
+            } = item;
+    
+            const count = data.filter(item => item.Status === Status).length;
+    
+            bannerData.push({
+                label: Status,
+                value: count,
+                description: `${toPercent(count, data.length)}%`,
+                color: Color ? 'white' : null,
+                background: Color
+            }); 
+        });
+    
+        bannerData.unshift();
+    
+        return bannerData;
+    }
 
     const dashboard = Component_DashboardBanner({
         margin: '20px 0px',
-        data: bannerData,
+        data: buildBannerData(Data_Requests),
         parent: viewContainer
     });
 
@@ -192,6 +196,17 @@ export default async function View_Dashboard() {
             if (Progress === 100) {
                 row.classList.add('table-success');
             }
+        },
+        onDraw(param) {
+            const {
+                jqevent,
+                table
+            } = param;
+
+            /* Set dashboard on table filter */
+            const data = table.rows({ search: 'applied' }).data().toArray();
+
+            dashboard.update(buildBannerData(data));
         },
         parent: viewContainer
     });
