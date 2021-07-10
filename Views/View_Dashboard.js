@@ -24,7 +24,7 @@ export default async function View_Dashboard() {
     
     const viewTitle = Component_Title({
         title: App.title,
-        subTitle: `Dashboard`,
+        subTitle: `Hi, Roane!`,
         parent,
         date: new Date().toLocaleString('default', {
             dateStyle: 'full'
@@ -119,6 +119,92 @@ export default async function View_Dashboard() {
     });
 
     dashboard.add();
+
+    const markets = [
+        {
+            staus: 'In Progress'
+        },
+        {
+            staus: 'Not Started'
+        },
+        {
+            staus: 'Approved'
+        }
+    ];
+
+    const facilities = [
+        {
+            staus: 'Submitted'
+        },
+        {
+            staus: 'Not Started'
+        },
+        {
+            staus: 'Approved'
+        }
+    ];
+
+    /** Markets Banner */
+    const marketsBanner = Component_DashboardBanner({
+        data: [
+            /** Markets */
+            {
+                label: 'Markets',
+                value: markets.length,
+            },
+            {
+                label: 'Approved',
+                value: markets.filter(market => market.status === 'Approved').length,
+                description: `${toCiel(markets.filter(market => market.status === 'Approved').length, markets.length)}%`,
+                color: '#155724',
+                background: '#d4edda'
+            },
+            {
+                label: 'In Progress',
+                value: markets.filter(market => market.status === 'In Progress').length,
+                description: `${toFloor(markets.filter(market => market.status === 'In Progress').length, markets.length)}%`,
+                color: '#856404',
+                background: '#fff3cd'
+            },
+            {
+                label: 'Not Started',
+                value: markets.filter(market => market.status === 'Not Started').length,
+                description: `${toPercent(markets.filter(market => market.status === 'Not Started').length, markets.length)}%`,
+                color: '#721c24',
+                background: '#f8d7da'
+            },
+            /** Facilites */
+            {
+                label: 'Facilities',
+                value: facilities.length,
+            },
+            {
+                label: 'Approved',
+                value: facilities.filter(facility => facility.status === 'Approved').length,
+                description: `${toCiel(facilities.filter(facility => facility.status === 'Approved').length, facilities.length)}%`,
+                color: '#155724',
+                background: '#d4edda'
+            },
+            {
+                label: 'Submitted',
+                value: facilities.filter(facility => facility.status === 'Submitted').length,
+                description: `${toFloor(facilities.filter(facility => facility.status === 'Submitted').length, facilities.length)}%`,
+                color: '#856404',
+                background: '#fff3cd'
+            },
+            {
+                label: 'Not Started',
+                value: facilities.filter(facility => facility.status === 'Not Started').length,
+                description: `${toPercent(facilities.filter(facility => facility.status === 'Not Started').length, facilities.length)}%`,
+                color: '#721c24',
+                background: '#f8d7da'
+            },
+        ],
+        margin: '20px 0px',
+        parent
+    });
+
+    marketsBanner.add();
 
     /** Table ****************************************************************/
 

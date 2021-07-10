@@ -9,7 +9,7 @@ import View_Help from './Views/View_Help.js'
 import View_Dashboard from './Views/View_Dashboard.js'
 
 export default {
-    title: 'Proejct Request',
+    title: 'Project Request',
     primaryColor: 'mediumslateblue',
     primaryColorRGB: '123, 104, 238',
     secondaryColor: 'ghostwhite',
